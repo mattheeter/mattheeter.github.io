@@ -1,0 +1,143 @@
+<h1>Matt Heeter's Portfolio</h1>
+<img src="./static/portrait.png"></img>
+
+<h2>Project 1: A World of Data</h2>
+<h3>Motivation</h3>
+<p>
+    I chose to explore the relationship between food availablity and life expectancy because I'm 
+    a big foodie, and I like to keep track of how much I eat day-to-day. Using these attributes 
+    as they exist in the world seemed like a natural extension of these qualities and allowed me 
+    to get a sense of how much or little other people in the world have to eat, and how it affects
+    their wellbeing. I intended to look at how obesity rates negated the benefits of food 
+    availability, but the data was not available to download.Using my visualization, one 
+    can understand the way the data is distributed using the histograms, spaitally distributed 
+    using the maps, and correlated using the scatterplot. The change over time to the data can 
+    be seen by changing the year and brushing enables the user to look at subsets of the data, 
+    whether a range of values, countries, or the Earth.
+</p>
+<h3>The Data</h3>
+<p>
+    I started with two datasets, the daily per-capita supply of calories and the life expectancy 
+    from birth, both by country. The former ranged from around 1700 to close to 4000 calories 
+    per day, and the latter from as low as 50 years to close to 85 years. I added two additional 
+    datasets, the percent of people who can't afford a healthy diet and the per-capita health 
+    expenditure of the countries. The health expenditure one was interesting as it is extremely 
+    long-tailed, with a significant proportion of countries being in the $0-1000 range, with a few
+    extreme outliers. The data can be found found via:
+</p>
+<ul>
+    <li><a href="https://ourworldindata.org/food-supply">Daily per-capita supply of calories</a></li>
+    <li><a href="https://ourworldindata.org/food-prices">nnual per-capita health expenditure</a></li>
+    <li><a href="https://ourworldindata.org/financing-healthcare">% of people who can't afford a health diet</a></li>
+    <li><a href="https://ourworldindata.org/life-expectancy">Life expectancy from birth</a></li>
+</ul>
+<h3>Layout and Sketches</h3>
+<p>
+    I did not have any sketches that I used to layout the page for this project. The biggest 
+    concern I had for the layout was that it needed to be visible within a single page so the 
+    various interactions' effects could be seen across the different elements.
+</p>
+<h3>Views and GUI</h3>
+<p>
+    My project has 5 views of the data: 2 histograms, 2 choropleth maps, and one scatter plot. 
+    <img src="static/project_1/all_views.png" width="1200">
+</p>    
+<p>
+    Each view enables brushing and mouseover interactions. The brushing works by taking the 
+    countries brushed over (all those in a brushed bin for the histogram) and updating all the 
+    other views to make those selected countries stand out. This stand-out effect is achived 
+    using opacity for the maps and histograms, and color for the scatterplot. The opacity works 
+    for the two I used it on because of their univariate nature. For the scatterplot, the color 
+    change gives a nice effect of looking like movement, which I think helps to highlight 
+    correlation. When brushing, I decided to make the scales of the other visualizations 
+    (minus the scatterplot) update to reflect the selected data. I thought this provided 
+    a cool animation-looking effect, and allowed the user to see a new view that is more 
+    refined based on what they selected. 
+    <video autoplay loop muted playsinline src="static/project_1/brushing.mov" width="1200"></video>
+</p>
+<p>
+    The mouseover simply shows the value(s) of the given point, bar, or country. 
+    <video autoplay loop muted playsinline src="static/project_1/mouseover.mov" width="1200"></video>
+</p>
+</p>
+<p>
+    I added a slider for the year the data was recorded and the number 
+    of bins for the histograms and maps. The way binning works is cool because the maps and 
+    histograms share the same colormaps and enable a user to get the range of values from one and 
+    the location of them from another. I use simple dropdowns to change the independent and dependent 
+    variables, with the independent being the left/blue visualizations and the depenednt being the 
+    right/red ones. The scatterplot is purple because it has both datasets shown and blue + red = 
+    purple.
+    <video autoplay loop muted playsinline src="static/project_1/variables_year_bins.mov" width="1200"></video>
+</p>
+<h3>What You Can Discover</h3>
+<p>
+    My application enables users to discover how the different data attributes vary throughout 
+    the world. When brushing through the country data, I noticed the data is not very dependent 
+    on longitude, but latitued provides a much stronger signal towards the data. By brushing 
+    over the map, I was able to spot this pattern.
+    <video autoplay loop muted playsinline src="static/project_1/lat_long_exploration.mov" width="1200"></video>
+</p>
+<p>
+    Another thing I noticed while exploring the data was there is a plateau in the life 
+    expectancy as annual per-capita health expenditure increases.
+    <img src="static/project_1/health_spending_plateau.png" width="1200">
+</p>
+<h3>The Process</h3>
+<p>
+    My process for creating the application was pretty similar to how we did visualizations in 
+    previous assignments and in class. It uses D3 for pretty much everything. I had to get creative 
+    with how interacting with one of the visualizations updates another one, and I accomplished 
+    this in an interesting way. Each visualization has a "dependentVis" attribute. Whenever an 
+    interaction meant to update other visualizations occurs, it loops through the list of dependents 
+    and updates the necessary information. The code structure is pretty intuitive given the 
+    setup of the visualization. There's one file for every visualization type where the class is 
+    defined. The main.js file instantiates the different visualizations and handles switching 
+    datasets, years, and bin counts. The year and bin sliders have js embedded in index.html to 
+    show the currently selected value, as this was simpler than handling it in main.js or 
+    somewhere else. The application is deployed 
+    <a href="https://world-of-data-mu.vercel.app/">here</a> and the code 
+    lives <a href="https://github.com/mattheeter/world-of-data">here</a>.
+</p>
+<h3>Challenges and Future Work</h3>
+<p>
+    I had very little issue completing the project requirements on time. The biggest problem I had 
+    was with the "cumulative brushing" problem I had. After brushing within one visualization, the 
+    user could brush another and select a subset of the other brushes subset. This effectively 
+    allowed you to keep brushihing between views until you were only at one or two countries. This 
+    was not desireable to me as I felt like I would get lost doing it, not knowing exactly what I 
+    had brushed and what subset I was on now. I removed feature by addding a "brushingDisabled" 
+    attribute that was set to true for any visualization that was a dependent of the currently 
+    brushed one. Now you could only brush a different view by removing the first brush. 
+</p>
+<p>
+    My highest-priority goal for future work on any projects in this course is making it look nicer. 
+    I was able to get everything on one page, but it's just basic HTML with very little CSS, and 
+    looks very dated. Front-end is not something I've had the opportunity to work on much, so 
+    I've got a lot to learn.
+</p>
+<h3>AI and Peer Assistance</h3>
+<p>
+    I did not receive assistance from any peers in particular, besides that which was shared on the 
+    discord. I did get assistance from AI tools, though. I used AI to help with the following 
+    aspects:
+    <ul>
+        <li>
+            Getting the histograms and maps to sit next to each other. The CSS to do this is 
+            mostly AI generated.
+        </li>
+        <li>
+            The map legends are almost completely AI-generated. It did good at building the 
+            rectangles and putting the numbers in the right spots.
+        </li>
+        <li>
+            Matching the histogram and map colors.
+        </li>
+        <li>
+            Getting the map brush to work. It suggested using D3 built-in functionality 
+            via the .filter and .bounds method for this task, which work quite well.
+        </li>
+    </ul>
+</p>
+<h3>Demo Video</h3>
+<p>My demo video can be found <a href="https://www.youtube.com/watch?v=fIeCK1m6Igw">here</a>.</p>
