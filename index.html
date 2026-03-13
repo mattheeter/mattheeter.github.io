@@ -141,3 +141,88 @@
 </p>
 <h3>Demo Video</h3>
 <p>My demo video can be found <a href="https://www.youtube.com/watch?v=fIeCK1m6Igw">here</a>.</p>
+
+
+<h2>AR Knick-Knack</h2>
+<h3>Motivation</h3>
+<p>
+    I chose my two locations for my knick-knacks based on their significance to me. My more 
+    detailed one - that of Pompano Beach - was an easy pick. In May of 2025, I proposed to 
+    my then girlfriend of 5 years on the beach at sunset, and she said yes! This model depicts 
+    this exact moment, as it uses the photo that was taken as a base for the model. The other 
+    knick-knack depicts University of Cincinnati, a place that I've spent a significant amount 
+    of time at the last 5 years. It features a Bearcat Paw model and the university's best 
+    attribute: Crosley Tower.
+</p>
+
+<h3>Models</h3>
+<p>
+    <h4>My first knick-knack contains 5 models and 4 text panels</h4>
+    <ul>
+    <li>My fiancé and I. I made this one by using <a href="https://www.meshy.ai/discover">an AI mesh tool</a>.<br><img src="static/ar-knick-knack/us.png" height="224"></li>
+    <li>A ringbox with a ring inside. I made this one completely in blender with help from a <a href="https://www.youtube.com/watch?v=xhjmoA2w7hU&t=1393s">YouTube tutorial</a>. I added a script to enable it to open and close.<br><img src="static/ar-knick-knack/ringbox.png" height="224"></li>
+    <li>The beach scene. It features moving water and an ocean sound. I found it on the <a href="https://assetstore.unity.com/packages/3d/environments/island-assets-56989">Unity Asset Store</a>.<br><img src="static/ar-knick-knack/beach.png" height="224"></li>
+    <li>The rain that spawns given the weather. This was also on the <a href="https://assetstore.unity.com/packages/vfx/particles/environment/rain-maker-2d-and-3d-rain-particle-system-for-unity-34938">Unity Asset Store</a>.<br><video autoplay loop muted playsinline src="static/ar-knick-knack/rain.mov" width="224"></video></li>
+    <li>A rock, just for fun. Again on the <a href="https://assetstore.unity.com/packages/3d/environments/environment-pack-rocks-stylized-316250">Unity Asset Store</a>.<br><img src="static/ar-knick-knack/rock.png" height="224"></li>
+    <li>The name of the location.<br><img src="static/ar-knick-knack/pompano.png" height="224"></li>
+    <li>The current weather.<br><img src="static/ar-knick-knack/pompano_weather.png" height="224"></li>
+    <li>The current time.<br><img src="static/ar-knick-knack/pompano_time.png" height="224"></li>
+    <li>A countdown to our wedding (May 29th).<br><img src="static/ar-knick-knack/pompano_countdown.png" height="224"></li>
+    </ul>
+    <h4>The second one features 2 models</h4>
+    <ul>
+    <li>Crosley Tower, which I found <a href="https://www.printables.com/model/811090-uc-crosley-tower/files">online</a>.<br><img src="static/ar-knick-knack/crosley.png" height="224"></li>
+    <li>The Bearcat Paw logo. I also found it <a href="https://makerworld.com/en/models/74240-cincinnati-bearcats#profileId-217177">online</a>.<br><img src="static/ar-knick-knack/paw.png" height="224"></li>
+    <li>The name of the location.<br><img src="static/ar-knick-knack/cincy.png" height="224"></li>
+    <li>The current weather.<br><img src="static/ar-knick-knack/cincy_weather.png" height="224"></li>
+    <li>The current time.<br><img src="static/ar-knick-knack/cincy_time.png" height="224"></li>
+    <li>An important reminder.<br><img src="static/ar-knick-knack/cincy_90.png" height="224"></li>
+    </ul>
+
+    Both knick-knacks feature lighting that changes based on the time of day and rain that is spawned in if the locations' weather 
+    calls for it. The ring box in the first one opens when the cube is brought closer to the camera.
+</p>
+
+<h3>The Process</h3>
+<p>
+    The application makes heavy use of Vuforia. It is the library that handles all tracking and camera stuff. Another noteworthy 
+    library is <a href="https://openweathermap.org/">Open Weather</a>, whose API I use for getting weather data at both locations. 
+    As for my own code, it's pretty straightforward with just attaching scripts to the relevant things that need to change. I added 
+    the script `LightCycle` to the directional lights of both knick-knacks. This script changes the angle of the light based on the time 
+    of day, with noon being the most direct (highest intensity) and midnight being the least (lowest intensity). The weather text 
+    gets a script `WeatherAPI`, which pulls the weather data from the API, shows the temperature and conditions, and if it is one of the 
+    rainy conditions ("Rain", "Thunderstorm", "Drizzle", or "Tornado"), spawns a rainy affect that has both visual and auditory elements. 
+    This script, along with the beach sound (in the first knick-knack) both become enabled when their respective cubes are tracked, 
+    using the MultiTarget event callbacks. They are subsequently disabled when the objects are no longer tracked. The script `GetTime` for getting 
+    the current time is pretty simple, relying only on built-in libraries for converting between time zones. The same goes for the 
+    countdown script `CountdownText`, which does a similar thing for time zones, then parses the data and subtracts it to get the difference between now 
+    and the event date. Lastly, the ring box has a script `RingBox` attached that causes it to open when the cube is moved close to the camera. This 
+    operates by changing the local position and angle of the box's lid. The distance is computed by maintaining a reference to the 
+    AR camera GameObject and constantly computing the distance between it and the box, triggering it to open if it drops below a threshold.
+</p>
+<p>
+    To access my application, the code can be obtained via <a href="https://github.com/mattheeter/ar-knick-knack">GitHub</a>. After 
+    cloning, it can be opened in Unity and ran there. I also deployed the application to my iPhone to complete the level 6 goal.
+    <br>
+    <img src="static/ar-knick-knack/iphone_app.png", height="224">
+</p>
+
+<h3>Challenges</h3>
+<p>
+    My biggest challenge with this project by far was creating models. Even with a tutorial to follow along with, it took me a 
+    significant amount of time to model the ring and ringbox. The tutorial was about 30 minutes, and I spent closer to 3 hours 
+    following along and was still left with pretty under-whelming models. Everything about the opening/closing is handled in Unity, 
+    but with more experience I feel I could have done it in Blender and made the motion smoother. In addition, I could have 
+    had better looking and more realistic textures. I had no chance of creating the models of my fiancé and me, thus the AI mesh tool 
+    I mentioned earlier handled all that. Given that it's an AR scene, the weird AI artifacting is not very noticeable, but if 
+    this was intended to be used in a more immersive environment, significant cleanup would be required.
+</p>    
+
+<h3>AI/Collaboration</h3>
+<p>
+    For this project, I made pretty limited use of AI and no peer assistance. Of course, I used AI to get the model of my fiancé and 
+    me. Apart from this, I used it a little bit to assist with scripting questions like what types things should be and what I should be 
+    looking for in the Unity docs, but other than this my experience with Unity was enough to get me through.
+</p>
+<h3>Demo Video</h3>
+<p>My demo video can be found <a href="">here</a>.</p>
