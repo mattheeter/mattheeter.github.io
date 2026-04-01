@@ -236,7 +236,7 @@
 <ul>
 <li><p>Official dataset: <a href="https://data.cincinnati-oh.gov/Thriving-Healthy-Neighborhoods/Cincinnati-311-Non-Emergency-Service-Requests/4cjh-bm8b">Cincinnati 311 Non-Emergency Service Requests</a> </p>
 </li>
-<li><p>Repository CSV used by the app: <a href="https://github.com/mattheeter/who-you-gonna-call/blob/dev/data/Cincinnati_311_(Non-Emergency">data/Cincinnati<em>311</em>(Non-Emergency)_Service_Requests_20260227.csv</a>_Service_Requests_20260227.csv) </p>
+<li><p>Repository CSV used by the app: <a href="">data/Cincinnati<em>311</em>(Non-Emergency)_Service_Requests_20260227.csv</a>_Service_Requests_20260227.csv) </p>
 </li>
 <li><p>Base Cincinnati neighborhood GeoJSON source: <a href="https://github.com/search?q=repo%3Ablackmad%2Fneighborhoods%20cincinnati&amp;type=code">blackmad/neighborhoods repository search for Cincinnati</a> </p>
 </li>
@@ -246,7 +246,7 @@
 <p>Our site filters the raw Cincinnati 311 Non-Emergency Service Requests CSV down to 14 service types that are mappable and comparable in a single interface. Important fields used in the visualization include request type, neighborhood, public agency, priority, method received, creation date, last update date, latitude, and longitude. In the app, <code>DATE_CREATED</code> drives the timeline, <code>DATE_LAST_UPDATE</code> is used to derive response-time measure in days, and latitude/longitude put each request on the map. </p>
 <p>One important design decision is that the app does not attempt to visualize every possible field from the dataset at once. It focuses on fields that can be compared across multiple views such as geography, time, service category, agency, priority, and request intake method. </p>
 <h3 id="sketches">Sketches</h3>
-<p><img alt="Initial Project Sketch" src="InitialProjectSketch.png" /></p>
+<p><img alt="Initial Project Sketch" src="https://github.com/mattheeter/who-you-gonna-call/blob/documentation-updates/InitialProjectSketch.png?raw=true" width="1024"/></p>
 <p>We started our project by creating the sketch shown above as a reference for us to begin building and laying out our visualizations. We found sketching to be crucial in our ability to work asynchronously on the project as it enabled us to work individually while ensuring we were working towards our shared vision. With visually creative projects such as this one, making design decisions can be very difficult but using sketches to explain our thoughts helped us communicate our ideas effectively. </p>
 <p>The main part of the sketch is how we wanted to size and layout the map. We all agreed that it should be the first thing users see and interact with, because it is the best way to convey the geospatial insights of the 311 data. Below the map, we wanted to add something which showed the same data as above but on a time scale to supplement what is shown above. In our final product, we coupled the plot below to the map with an animation to better show the changes in 311 calls over time. </p>
 <p>While the sketches were a great starting point, you will see that our final project has taken some large deviations. We were able to bake in certain features like the panning and zooming more natively, and were able to consolidate the legend and color by selections into one control box saving space on the screen. We found that a lot of the supplemental visualizations would work well by themselves without having to be on the screen at the same time as the map. We then decided to remove them from the side and put them below the map to make more space. </p>
