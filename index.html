@@ -293,3 +293,75 @@ enables creation of and brushing, linking, animating, and providing on-demand de
 <p>JP implemented the various Service Types for the 311 calls and the ability to select them on the map and update the other charts based on the selection.  </p>
 <h3 id="demo">Demo</h3>
 <p>A demonstration of our video can be found <a href="https://youtu.be/GZ52v-P_riE">here</a>.</p>
+
+
+<h2 id="vr-in-the-wild">VR/AR Robot Teleoperation</h2>
+<h3 id="purpose">Purpose</h3>
+<ul>
+    <li>Robots can operate autonomously or with teleoperation</li>
+    <li>
+        Autonomous operation is difficult, requiring either programmed instructions or learned actions
+        <ul>
+            <li>It’s hard to represent diverse environments with programming</li>
+            <li>Learning requires huge amounts of data</li>
+        </ul>
+    </li>
+    <li>
+        VR facilitates robot operation via a natural means to control robots
+        <ul>
+            <li>At least for humanoids</li>
+        </ul>
+    </li>
+</ul>
+<h3 id="commercial-user">User 1: Consumer Robotics Companies</h3>
+<ul>
+    <li>In-home robots are trying to penetrate the market</li>
+    <li>These robots require training, but this takes time</li>
+    <li>
+        1X’s NEO is a humanoid robot assistant for home tasks
+        <ul>
+            <li>Cleaning</li>
+            <li>Dishes</li>
+            <li>Etc.</li>
+        </ul>
+    </li>
+    <li>It does some things autonomously, but can call on an “expert” for harder tasks</li>
+    <li><a href="https://www.roadtovr.com/helper-robot-neo-vr-telepresence/">Source</a></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f3c4mQty_so?si=OG8PFnYKH1f7p3_c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3 id="industry-user">User 2: Industrial Robotics Companies</h3>
+<ul>
+    <li>Factories employ humans that must be physically present to perform their jobs</li>
+    <li>These same factories use robots for more repetitive or dangerous tasks</li>
+    <li>Human operators could potentially work from home given the infrastructure</li>
+    <li><a href="https://robotics.mit.edu/teleoperating-robots-virtual-reality/">Source</a></li>
+</ul>
+<h3 id="industry-user">User 3: Robot Neural Network Training</h3>
+<ul>
+    <li>Teleoperation–produced data can be used to train robots for both scenarios</li>
+    <li>Many robots are moving towards neural-network based action planning and sensory understanding</li>
+    <li>Teleoperation: High-Quality Data Collection for Model Training</li>
+</ul>
+<p><a href="https://bostondynamics.com/blog/large-behavior-models-atlas-find-new-footing/?wvideo=50kx6qvovj"><img src="https://embed-ssl.wistia.com/deliveries/cfe0794b0226b12c225fd42aa947fa59a573250d.jpg?image_play_button_size=2x&image_crop_resized=960x480&image_play_button_rounded=1&image_play_button_color=00355ae0" width="560" height="315" style="width: 560px; height: 315px;"></a></p><p><a href="https://bostondynamics.com/blog/large-behavior-models-atlas-find-new-footing/?wvideo=50kx6qvovj"></a></p>
+<h3 id="features-uses">Features & Tasks</h3>
+<ul>
+    <li>Control robots’ articulation</li>
+    <li>See what the robot sees</li>
+    <li>Locomote</li>
+    <li>Instill knowledge in task completion</li>
+    <li><a href="https://electrek.co/2024/11/25/tesla-remote-control-team-robotaxis-waymo/">Source</a></li>
+</ul>
+<img src="https://i0.wp.com/electrek.co/wp-content/uploads/sites/3/2024/11/IMG_0038.jpeg?w=1500&quality=82&strip=all&ssl=1" width="560">
+<h3 id="design-implementation">Design and Implementation</h3>
+<ul>
+    <li>Many different HMDs are used</li>
+    <li>Realism is achieved with AR passthrough</li>
+    <li>Interaction is achieved mainly controller-based input</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<ul>
+    <li>Using consumer AR/VR hardware</li>
+    <li>Especially with NEO – outside-in tracking</li>
+    <li>Privacy</li>
+    <li><a href="#commercial-user">“Consumer VR headsets like Quest 3 don’t provide the sort of proprioception you need to instantly understand that a surface is soft and pliable, or hard and fragile”</a></li>
+</ul>
