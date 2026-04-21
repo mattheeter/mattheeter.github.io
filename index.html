@@ -365,3 +365,27 @@ enables creation of and brushing, linking, animating, and providing on-demand de
     <li>Privacy</li>
     <li><a href="#commercial-user">“Consumer VR headsets like Quest 3 don’t provide the sort of proprioception you need to instantly understand that a surface is soft and pliable, or hard and fragile”</a></li>
 </ul>
+
+
+<h2 id="vis-in-the-wild">Neural Network Training Visualization</h2>
+<h3 id="vis-purpose">Purpose</h3>
+<p>The puprose of this visualization is to enable users to be able to look inside a neural network as it trains. This is typically a very opaque process, so this visualization seeks to add intuitive graphics and interactions so you can see how the various pieces that go into training work.</p>
+<h3 id="vis-data">Data</h3>
+<p>The visualization features various datasests encompassing both classification and regression tasks. The data points are arranged in various structures, ranging from two clusters that are easy for a model to learn to disambiguate to a spiral that requires multiple hidden layers and multiple neurons within each. Controls into the amount of noise in the data and the train/test percentage are provided, enabling a user to experiment with regularization and over/underfitting. While the source of the data is not provided, I assume that the data are synthetically generated given the ability to inject noise and the "REGENERATE" button which provies the same strcuture with slightly different data points..</p>
+<img src="static/vis-in-the-wild/cluster.png" width="224">
+<img src="static/vis-in-the-wild/spiral.png" width="224">
+<img src="static/vis-in-the-wild/regression.png" width="224">
+<img src="static/vis-in-the-wild/data-controls.png" width="72">
+<h3 id="vis-users">Users</h3>
+<p>I believe this visualization is made for ML beginners who are wanting to learn more about nerual network training in a way that isn't just a bunch of math. It is less applicable to experts, as it is only relevant for simple problems that can be solved with pretty shallow and narrow networks.</p>
+<h3 id="vis-questions-insights">Questions and Insights</h3>
+<p>This visualizaiton primarily allows the user to ask questions about how different neural network training settings affect the learning process. These are anwered by allowing the user to change all these (learning rate, activation function, number of layers, number of neurons per layer, etc.) and train a model. The resultant model decisions can be seen during and after training, indicating to the user how their settings did. One cool thing I used this tool to understand is the difference between overfitting and underfitting. By setting the train/test ratio to the extremes, these phenomena could be observed.</p>
+<img src="static/vis-in-the-wild/training-settings.png" width="768">
+<img src="static/vis-in-the-wild/output.png" width="224">
+<p>A secondary question that is answered is what do all these hidden layers do? For each neuron, the activations from applying it to the dataset are plotted. This shows what that neuron is "searching for" in the data, and this appears as maybe a simple line or maybe something more complex like a spiral. Clicking a weight/bias connected to the neurons allows you to directly edit it, giving more control over the neurons' contributions.</p>
+<img src="static/vis-in-the-wild/activation-maps.png" width="512">
+<h3 id="vis-choices">Visual and Interaction Choices</h3>
+<p>I believe the choices of visual and interactions are vey effective. The simple +/- for depth and width make it easy to create new networks and train them up. The colors make it easy to differentiate between positive and negative values (though I wish they had switched them from what they are). I also think the ability to directly edit weights and biases and see how the model responds is very cool.</p>
+<h3 id="vis-limitations">Limitations</h3>
+<p>The biggest limitation of this visualization is the inabiltiy to bring your own data. <a href="#vis-users">While it can only be used for simple networks, </a> I think a user would be more engaged if they could see how different architectures and training settings affected a problem they care about. It would also provide more utility out of the tool, because a viable ML model as opposed to just an understanding of how they work could be obtained from it.</p>
+<p>A smaller limitation is that you cannot "export" a configuration to, for example,  python code. While this code would be less useful from a production model standpoint, it could help the user to understand the TensorFlow API and the way you train and evaluate.</p>
